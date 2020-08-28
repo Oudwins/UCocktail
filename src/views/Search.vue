@@ -55,6 +55,8 @@
       :total-rows="dataDrinks.length"
       :per-page="perPage"
       aria-controls="cocktail-search-results"
+      size="lg"
+      align="center"
     ></b-pagination>
     <!-- Footer -->
     <app-footer></app-footer>
@@ -84,9 +86,17 @@ export default {
       return this.$store.getters.getCocktails;
     },
     cocktails() {
-      if (this.rowsNumItems > 0)
-        return this.dataDrinks.slice(0, (this.curPage - 1) * this.perPage);
-      return this.dataDrinks;
+      // If result is less than perPage no pagination needed
+      console.log(this.dataDrinks);
+      if (this.dataDrinks.length <= this.perPage) return this.dataDrinks;
+      // if we are not on page 1 we follow this logic to find up to where to cut.
+      if (this.curPage > 1)
+        return this.dataDrinks.slice(
+          this.perPage * (this.curPage - 1),
+          this.curPage * this.perPage
+        );
+      // if this is the first page
+      return this.dataDrinks.slice(0, this.perPage);
     },
     loading() {
       return this.$store.getters.loading;
