@@ -87,7 +87,6 @@ export default {
     },
     cocktails() {
       // If result is less than perPage no pagination needed
-      console.log(this.dataDrinks);
       if (this.dataDrinks.length <= this.perPage) return this.dataDrinks;
       // if we are not on page 1 we follow this logic to find up to where to cut.
       if (this.curPage > 1)
