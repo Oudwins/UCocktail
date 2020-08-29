@@ -32,9 +32,9 @@
                 <p class="card-text">
                   <b-badge
                     pill
-                    :variant="cocktail.strAlcoholic ? 'primary' : 'success'"
+                    :variant="cocktail.strAlcoholic ? 'danger' : 'success'"
                     class="mr-2"
-                    v-if="cocktail.strAlcoholic"
+                    v-if="cocktail.strAlcoholic !== undefined"
                   >{{ cocktail.strAlcoholic ? 'Alcoholic' : 'Non Alcoholic' }}</b-badge>
                   <b-badge
                     pill

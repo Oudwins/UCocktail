@@ -51,9 +51,9 @@
             <div>
               <b-badge
                 pill
-                :variant="drink.strAlcoholic ? 'primary' : 'success'"
+                :variant="drink.strAlcoholic ? 'danger' : 'success'"
                 class="mr-2"
-                v-if="drink.strAlcoholic"
+                v-if="drink.strAlcoholic !== null || drink.strAlcoholic !== undefined"
               >{{ drink.strAlcoholic ? 'Alcoholic' : 'Non Alcoholic' }}</b-badge>
               <b-badge pill variant="info" class="ml-2" v-if="drink.strGlass">{{drink.strGlass}}</b-badge>
             </div>

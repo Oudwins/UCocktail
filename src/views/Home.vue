@@ -17,7 +17,7 @@
             ></b-input>
           </b-col>
           <b-col offset-md="1" md="3" class="home_center_cols">
-            <b-button type="submit" variant="primary" class="home-btn px-5 py-2">Search</b-button>
+            <b-button type="submit" variant="danger" class="home-btn px-5 py-2">Search</b-button>
           </b-col>
         </b-form>
       </b-row>
