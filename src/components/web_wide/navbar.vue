@@ -58,4 +58,7 @@ export default {
 </script>
 
 <style>
+.show {
+  background: white;
+}
 </style>

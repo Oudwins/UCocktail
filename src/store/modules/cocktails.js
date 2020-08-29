@@ -12,7 +12,7 @@ const state = {
     },
     ingToolTips: {}
   },
-  cocktails: []
+  cocktails: [],
 };
 
 const getters = {
@@ -27,7 +27,7 @@ const getters = {
   },
   getCocktails: state => {
     return state.cocktails;
-  }
+  },
 };
 
 
@@ -47,6 +47,9 @@ const mutations = {
   },
   resetIngPosition: (state) => {
     state.cocktail.related.ingredientPosition = -1;
+  },
+  notFound: (state) => {
+    state.cocktails = null;
   }
 };
 
@@ -83,7 +86,8 @@ const actions = {
       const stringSearch = (await axiosDB.get('search.php?s=' + payload)).data.drinks;
       const IngredientSearch = (await axiosDB.get('filter.php?i=' + payload)).data.drinks;
       const list = IngredientSearch ? mergeArrCocktails(IngredientSearch, stringSearch) : stringSearch;
-      context.commit('cocktails', list);
+      // if list exists commit mutation to store cocktais list, else set cocktails to undefined
+      list ? context.commit('cocktails', list) : context.commit('notFound');
       context.dispatch('changeLoading', false, { root: true });
     } catch (err) {
       console.log(err);

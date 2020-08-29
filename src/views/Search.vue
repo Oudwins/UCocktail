@@ -13,51 +13,61 @@
       <b-spinner label="Spinning" style="width:5rem;height:5rem;"></b-spinner>
     </b-container>
     <!-- Search Results -->
-    <div class="container mt-3" v-else>
-      <div class="row justify-content-center">
-        <div class="card-deck" style="justify-content: center;">
-          <!-- Each Cocktail Card -->
-          <router-link
-            v-for="cocktail in cocktails"
-            :key="cocktail.idDrink"
-            :to="'/drink/'+cocktail.idDrink"
-            class="unstyle-link"
-          >
-            <div class="card mb-4" style="min-width: 18rem; max-width: 18rem;">
-              <!-- <img class="card-img-top" :src="cocktail.strDrinkThumb" alt="Cocktail Image" /> -->
-              <b-img-lazy class="card-img-top" :src="cocktail.strDrinkThumb" alt="Cocktail Image"></b-img-lazy>
-              <div class="card-body">
-                <h5 class="card-title">{{ cocktail.strDrink}}</h5>
-                <!-- Tags -->
-                <p class="card-text">
-                  <b-badge
-                    pill
-                    :variant="cocktail.strAlcoholic ? 'danger' : 'success'"
-                    class="mr-2"
-                    v-if="cocktail.strAlcoholic !== undefined"
-                  >{{ cocktail.strAlcoholic ? 'Alcoholic' : 'Non Alcoholic' }}</b-badge>
-                  <b-badge
-                    pill
-                    variant="info"
-                    class="ml-2"
-                    v-if="cocktail.strGlass"
-                  >{{cocktail.strGlass}}</b-badge>
-                </p>
+    <div v-if="dataDrinks">
+      <div class="container mt-3">
+        <div class="row justify-content-center">
+          <div class="card-deck" style="justify-content: center;">
+            <!-- Each Cocktail Card -->
+            <router-link
+              v-for="cocktail in cocktails"
+              :key="cocktail.idDrink"
+              :to="'/drink/'+cocktail.idDrink"
+              class="unstyle-link"
+            >
+              <div class="card mb-4" style="min-width: 18rem; max-width: 18rem;">
+                <!-- <img class="card-img-top" :src="cocktail.strDrinkThumb" alt="Cocktail Image" /> -->
+                <b-img-lazy class="card-img-top" :src="cocktail.strDrinkThumb" alt="Cocktail Image"></b-img-lazy>
+                <div class="card-body">
+                  <h5 class="card-title">{{ cocktail.strDrink}}</h5>
+                  <!-- Tags -->
+                  <p class="card-text">
+                    <b-badge
+                      pill
+                      :variant="cocktail.strAlcoholic ? 'danger' : 'success'"
+                      class="mr-2"
+                      v-if="cocktail.strAlcoholic !== undefined"
+                    >{{ cocktail.strAlcoholic ? 'Alcoholic' : 'Non Alcoholic' }}</b-badge>
+                    <b-badge
+                      pill
+                      variant="info"
+                      class="ml-2"
+                      v-if="cocktail.strGlass"
+                    >{{cocktail.strGlass}}</b-badge>
+                  </p>
+                </div>
               </div>
-            </div>
-          </router-link>
+            </router-link>
+          </div>
         </div>
       </div>
+      <!-- Pagination -->
+      <b-pagination
+        v-if="dataDrinks.length > perPage"
+        v-model="curPage"
+        :total-rows="dataDrinks.length"
+        :per-page="perPage"
+        aria-controls="cocktail-search-results"
+        size="lg"
+        align="center"
+      ></b-pagination>
     </div>
-    <b-pagination
-      v-if="dataDrinks.length > perPage"
-      v-model="curPage"
-      :total-rows="dataDrinks.length"
-      :per-page="perPage"
-      aria-controls="cocktail-search-results"
-      size="lg"
-      align="center"
-    ></b-pagination>
+    <!-- NOT FOUND -->
+    <b-container
+      v-else
+      style="height: 50vh; display:flex; justify-content:center; align-items:center;"
+    >
+      <h1 style="font-size: 5rem;">No results found</h1>
+    </b-container>
     <!-- Footer -->
     <app-footer></app-footer>
   </div>
