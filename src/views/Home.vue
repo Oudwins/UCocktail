@@ -6,7 +6,7 @@
     <b-container class="hero-img" fluid>
       <b-row align-v="center" align-h="center" style="height: 100%;">
         <b-form inline @submit.prevent="search">
-          <b-col md="8" class="home_center_cols">
+          <b-col lg="8" class="home_center_cols">
             <label for="home-search-bar" class="sr-only">Search Bar</label>
             <b-input
               v-model="search_text"
@@ -16,7 +16,7 @@
               class="home-bar px-5 py-4"
             ></b-input>
           </b-col>
-          <b-col offset-md="1" md="3" class="home_center_cols">
+          <b-col offset-lg="1" lg="3" class="home_center_cols">
             <b-button type="submit" variant="danger" class="home-btn px-5 py-2">Search</b-button>
           </b-col>
         </b-form>

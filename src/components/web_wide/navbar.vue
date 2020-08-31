@@ -61,4 +61,7 @@ export default {
 .show {
   background: white;
 }
+.show a {
+  color: black !important;
+}
 </style>
